@@ -4,7 +4,7 @@ canvas = Canvas(tk, width=730, height=700)
 canvas.pack()
 
 imagen=PhotoImage(file="esenario.png")
-my_image=PhotoImage(file="bom.png")
+my_image=PhotoImage(file="p_1_down.png")
 
 
 canvas.create_image(0,0,anchor=NW,image=imagen)
