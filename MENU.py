@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# autor: Hugo Ruscitti
-# web: www.losersjuegos.com.ar
-# licencia: GPL 2
+
 from tkinter import *
 import random
 import pygame
