@@ -165,7 +165,7 @@ def main():
     pygame.mixer.music.load("sonidos/leveltheme.wav")
     pygame.mixer.music.play(3)
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Mario")
+    pygame.display.set_caption("BOMBERMAN")
    
     fondo = imagen("imagenes/fondo1.png")
          
