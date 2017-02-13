@@ -29,16 +29,16 @@ class Persona(pygame.sprite.Sprite):
     def update(self, direction):
         if direction == 'left':
             self.corte(self.left_states)
-            self.rect.x -= 5
+            self.rect.x -= 10
         if direction == 'right':
             self.corte(self.right_states)
-            self.rect.x += 5
+            self.rect.x += 10
         if direction == 'up':
             self.corte(self.up_states)
-            self.rect.y -= 5
+            self.rect.y -= 10
         if direction == 'down':
             self.corte(self.down_states)
-            self.rect.y += 5
+            self.rect.y += 10
  
         if direction == 'stand_left':
             self.corte(self.left_states[0])
