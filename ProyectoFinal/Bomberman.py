@@ -228,4 +228,132 @@ class Cuarto2(Cuarto):
                
   
 
+class Cuarto3(Cuarto):
+    """Esto crea todas las paredes del cuarto 3"""
+    def __init__(self):
+        super().__init__()
+     
+        paredes = [ [0,0,1151,30,ROJO],
+                  [1121,0,30,225,ROJO],
+                  [1121,325,30,250,ROJO],
+                  [0,507,1151,30,ROJO],
+                  [0,0,30,225,ROJO],
+                  [0,325,30,212,ROJO],
+                ]
+         
+        for item in paredes:
+            pared = Pared(item[0],item[1],item[2],item[3],item[4])
+            self.pared_lista.add(pared)
+         
+        '''for x in range(250,1200, 250):
+            for y in range(150, 750, 250):
+                pared = Pared(x, y, 20, 150,VIOLETA)
+                self.pared_lista.add(pared)'''
+         
+        for x in range(250,1000, 150):
+            pared = Pared(x, 200, 20, 150,NEGRO)
+            self.pared_lista.add(pared)
+ 
+def main():
+    """ Programa Principal """
+     
+    # Llamamos a esta función para que la biblioteca Pygame pueda autoiniciarse.
+    pygame.init()
+
+    #Usamos una biblioteca de pygame para poner la musica
+    pygame.mixer.init()
+    pygame.mixer.music.load("sonidos/leveltheme.wav")
+    pygame.mixer.music.play(3)
+      
+    # Creamos una pantalla de 800x600
+    pantalla = pygame.display.set_mode([1151, 537])
+      
+    # Creamos el título de la ventana
+    pygame.display.set_caption('BOMBERMAN')
+      
+    # Creamos al objeto pala protagonista
+    protagonista = Protagonista((50, 50))
+    desplazarsprites = pygame.sprite.Group()
+    desplazarsprites.add(protagonista)
+      
+    cuartos = []
+     
+    cuarto = Cuarto1()
+    cuartos.append(cuarto)
+     
+    cuarto = Cuarto2()
+    cuartos.append(cuarto)
+     
+    cuarto = Cuarto3()
+    cuartos.append(cuarto)
+     
+    cuarto_actual_no = 0
+    cuarto_actual = cuartos[cuarto_actual_no]
+     
+    reloj = pygame.time.Clock()
+      
+    puntuacion = 0
+     
+    hecho = False
+      
+    while not hecho:
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print("SALISTEs")
+                #game_over = True
+                hecho = True
+                sys.exit()
+                #pygame.quit()
+
+        protagonista.teclado(event)         
+
+                     
+        # --- Lógica del Juego ---
+         
+        protagonista.mover(cuarto_actual.pared_lista)
+         
+        if protagonista.rect.x < -15:
+            if cuarto_actual_no == 0:
+                cuarto_actual_no = 2
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 1141
+            elif cuarto_actual_no == 2:
+                cuarto_actual_no = 1
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 1141
+            else:
+                cuarto_actual_no = 0
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 1141
+                 
+        if protagonista.rect.x > 1152:
+            if cuarto_actual_no == 0:
+                cuarto_actual_no = 1
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 0
+            elif cuarto_actual_no == 1:
+                cuarto_actual_no = 2
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 0
+            else:
+                cuarto_actual_no = 0
+                cuarto_actual = cuartos[cuarto_actual_no]
+                protagonista.rect.x = 0
+     
+        # --- Dibujamos ---
+##        pantalla.fill(NEGRO)
+        imagen_defondo = pygame.image.load("Factory.png").convert()
+
+        pantalla.blit(imagen_defondo, [0, 0])
+         
+        desplazarsprites.draw(pantalla)
+        cuarto_actual.pared_lista.draw(pantalla)
+         
+        pygame.display.flip()
+      
+        reloj.tick(300)                  
+    pygame.quit()
+ 
+#main()
     

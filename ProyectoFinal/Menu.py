@@ -66,12 +66,12 @@ class Menu:
     
     def __init__(self, opciones):
         self.opciones = []
-        fuente = pygame.font.Font('dejavu.ttf', 20)
-        x = 300
-        y = 300
+        fuente = pygame.font.Font('dejavu.ttf', 35)
+        x = 250
+        y = 400
         paridad = 1
 
-        self.cursor = Cursor(x - 250, y, 50)
+        self.cursor = Cursor(x - 180, y, 50)
 
         for titulo, funcion in opciones:
             self.opciones.append(Opcion(fuente, titulo, x, y, paridad, funcion))
