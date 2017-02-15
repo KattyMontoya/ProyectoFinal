@@ -3,7 +3,11 @@ from tkinter import *
 import random
 import pygame
 from pygame.locals import *
-
+from Bomberman import main
+##import main
+pygame.mixer.init()
+pygame.mixer.music.load("sonidos/title.mid")
+pygame.mixer.music.play(3)
 
 class Opcion:
 
@@ -99,6 +103,7 @@ class Menu:
         if self.seleccionado < 0:
             self.seleccionado = 0
         elif self.seleccionado > self.total - 1:
+
             self.seleccionado = self.total - 1
         
         self.cursor.seleccionar(self.seleccionado)
@@ -120,43 +125,31 @@ class Menu:
             opcion.imprimir(screen)
 
 def comenzar_nuevo_juego():
-    print (" Función que muestra un nuevo juego.")
-     
-##root = Tk()
-##root.title("Suma")
-##numero1 = IntVar()
-##numero2 = IntVar()
-##entrada1 = Entry(root,textvariable=numero1)
-##entrada1.pack()
-##entrada2 = Entry(root,textvariable=numero2)
-##entrada2.pack()
-##aceptar = Button(root,text="Sumar",command=suma)
-##aceptar.pack()
-##root.mainloop()
+    
+    main()
 
 def mostrar_opciones():
     root = Tk()
     root.title("INSTRUCCIONES")
+    inst = Label(root,text="Rompe los bloques con las bombas y encuentra la salida. Muévete con las flechas de direccion. Presiona A para colocar bombas.",font="System 10 bold")
+    inst.pack()
     root.mainloop()
 ##    print( " Función que muestra otro menú de opciones.")
     
 
-def creditos():
-    print (" Función que muestra los creditos del programa.")
-
 def salir_del_programa():
-    import sys
-    print (" Gracias por utilizar este programa.")
-    sys.exit(0)
+##    import sys
+##    sys.exit(0)
+    pygame.quit()
 
 
 if __name__ == '__main__':
     
     salir = False
     opciones = [
-        ("Jugar", comenzar_nuevo_juego),
-        ("Opciones", mostrar_opciones),
-        ("Salir", salir_del_programa)
+        ("JUGAR", comenzar_nuevo_juego),
+        ("INSTRUCCIONES", mostrar_opciones),
+        ("SALIR", salir_del_programa)
         ]
 
     pygame.font.init()
@@ -168,7 +161,10 @@ if __name__ == '__main__':
 
         for e in pygame.event.get():
             if e.type == QUIT:
-                salir = True
+                #salir = True
+                sys.exit()
+##                salir_del_programa()
+                pygame.quit()
 
         screen.blit(fondo, (0, 0))
         menu.actualizar()
