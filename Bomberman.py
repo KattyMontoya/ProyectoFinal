@@ -162,7 +162,70 @@ class Protagonista(pygame.sprite.Sprite):
             if self.cambio_y > 0:
                 self.rect.bottom = bloque.rect.top 
             else:
-                self.rect.top = bloque.rect.bottom            
+                self.rect.top = bloque.rect.bottom
+
+class Cuarto():
+    """ Clase base para todos los cuartos. """
+     
+    #Cada cuarto tiene una lista de paredes, y de los sprites enemigos.
+    pared_lista = None
+    sprites_enemigos = None
+     
+    def __init__(self):
+        """ Constructor, creamos nuestras listas. """
+        self.pared_lista = pygame.sprite.Group()
+        self.sprites_enemigos = pygame.sprite.Group()
+     
+class Cuarto1(Cuarto):
+    """Esto crea todas las paredes del cuarto 1"""
+    def __init__(self):
+        super().__init__()
+        # Crear las paredes. (x_pos, y_pos, largo, alto)
+         
+        # Esta es la lista de las paredes. Cada una se especifica de la forma [x, y, largo, alto]
+        paredes = [ [0,0,1151,30,ROJO],
+                  [1121,0,30,225,ROJO],
+                  [1121,325,30,250,ROJO],
+                  [0,0,30,225,ROJO],
+                  [0,325,30,212,ROJO],
+                  [390,200,30,100,GRIS],
+                  [170,200,30,100,GRIS],
+                  [280,200,30,100,GRIS],
+                  [500,200,30,100,GRIS],
+                  [610,200,30,100,GRIS],
+                  [720,200,30,100,GRIS],
+                  [830,200,30,100,GRIS],
+                  [940,200,30,100,GRIS],
+                  [150,395,900,20,AZUL],
+                  [150,100,900,20,AZUL],
+                  [0,507,1151,30,ROJO],  
+                ]
+         
+        # Iteramos a través de la lista. Creamos la pared y la añadimos a la lista.
+        for item in paredes:
+            pared = Pared(item[0],item[1],item[2],item[3],item[4])
+            self.pared_lista.add(pared)
+         
+class Cuarto2(Cuarto):
+    """Esto crea todas las paredes del cuarto 2"""
+    def __init__(self):
+        super().__init__()
+         
+        paredes = [ [0,0,1151,30,ROJO],
+                  [1121,0,30,225,ROJO],
+                  [1121,325,30,250,ROJO],
+                  [0,507,1151,30,ROJO],
+                  [0,0,30,225,ROJO],
+                  [0,325,30,212,ROJO],
+                  [250,150,20,250,VERDE],
+                  [500,150,20,250,VERDE],
+                  [750,150,20,250,VERDE]  
+                ]
+         
+        for item in paredes:
+            pared = Pared(item[0],item[1],item[2],item[3],item[4])
+            self.pared_lista.add(pared)
+               
   
 
     
